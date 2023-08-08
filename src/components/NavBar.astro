@@ -1,0 +1,21 @@
+---
+import Container from "./Container.astro";
+import { pages } from "../data/pages";
+---
+
+<Container>
+	<div class="flex flex-wrap items-center justify-between uppercase">
+		<a class="text-xl mr-8" href="/">Dion</a>
+		<nav>
+			<ul class="flex gap-8">
+				{
+					pages.map(({ title, link }) => (
+						<li class="hover:underline focus-within:underline">
+							<a href={link}>{title}</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</Container>

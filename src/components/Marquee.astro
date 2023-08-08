@@ -1,0 +1,32 @@
+---
+import type { CardProps } from "../types";
+import Card from "./Card.astro";
+
+type Props = {
+	direction?: "right" | "left";
+	cards: CardProps[];
+	cardWidth?: number;
+};
+
+const { direction = "left", cards, cardWidth = 500 } = Astro.props;
+const animations = [
+	`marquee_${direction[0]}1 40s linear infinite;`,
+	`marquee_${direction[0]}2 40s linear infinite;`,
+];
+---
+
+<div class="relative grid overflow-x-hidden my-8 hover-animation-pause">
+	<div
+		class="whitespace-nowrap flex [&>*]:mr-8"
+		style={{ width: `${cards.length * cardWidth}px`, animation: animations[0] }}
+	>
+		{cards.map((card) => <Card {...card} />)}
+	</div>
+
+	<div
+		class="absolute top-0 whitespace-nowrap flex [&>*]:mr-8"
+		style={{ width: `${cards.length * cardWidth}px`, animation: animations[1] }}
+	>
+		{cards.map((card) => <Card {...card} />)}
+	</div>
+</div>

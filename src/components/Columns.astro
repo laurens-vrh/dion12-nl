@@ -1,0 +1,19 @@
+---
+type Props = {
+	columns?: number;
+	minWidth?: string;
+};
+
+const { columns, minWidth } = Astro.props;
+---
+
+<div
+	class="grid gap-4"
+	style={{
+		gridTemplateColumns: columns
+			? `repeat(${columns}, minmax(0, 1fr))`
+			: `repeat(auto-fill, minmax(${minWidth || 0}, 1fr))`,
+	}}
+>
+	<slot />
+</div>

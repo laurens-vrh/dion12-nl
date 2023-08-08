@@ -1,0 +1,60 @@
+---
+interface Props {
+	images: string[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="parent-grid grid gap-4">
+	{
+		images.map((image, i) => (
+			<img
+				class={`image${
+					i + 1
+				} reveal w-full h-full object-cover rounded-xl shadow-lg`}
+				src={image}
+				alt=""
+			/>
+		))
+	}
+</div>
+
+<style>
+	/* https://cssgrid-generator.netlify.app/ */
+	.parent-grid {
+		grid-template-columns: 1fr 0.5fr repeat(3, 1fr);
+		grid-template-rows: repeat(7, 1fr);
+	}
+
+	.image1 {
+		grid-area: 1 / 3 / 3 / 4;
+	}
+	.image2 {
+		grid-area: 1 / 4 / 3 / 5;
+	}
+	.image3 {
+		grid-area: 2 / 5 / 4 / 6;
+	}
+	.image4 {
+		grid-area: 4 / 5 / 6 / 6;
+	}
+	.image5 {
+		grid-area: 6 / 5 / 8 / 6;
+	}
+	.image6 {
+		grid-area: 3 / 4 / 5 / 5;
+	}
+	.image7 {
+		grid-area: 3 / 2 / 5 / 4;
+	}
+	.image8 {
+		grid-area: 3 / 1 / 5 / 2;
+	}
+	.image9 {
+		grid-area: 5 / 3 / 7 / 4;
+	}
+	.image10 {
+		grid-area: 5 / 4 / 7 / 5;
+	}
+</style>

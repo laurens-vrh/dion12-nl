@@ -1,0 +1,34 @@
+---
+import Container from "./Container.astro";
+import { pages } from "../data/pages";
+---
+
+<footer class="w-full bg-gray-800 pt-8 text-white uppercase">
+	<Container>
+		<div class="max-h-min px-8 md:grid md:grid-cols-2">
+			<ul
+				class="mx-auto mb-4 text-center flex flex-wrap justify-center gap-4 | md:block md:mx-none md:text-left md:w-full"
+			>
+				{
+					pages.map(({ title, link }) => (
+						<li class="mb-1 hover:underline focus-within:underline">
+							<a href={link}>{title}</a>
+						</li>
+					))
+				}
+			</ul>
+			<a class="m-auto md:mr-0" href="https://discord.gg/ZA4eKtxASB">
+				<img class="h-14" src="/img/discord-mark-white.svg" alt="" />
+			</a>
+		</div>
+	</Container>
+	<div class="bg-gray-900 p-4 mt-8 flex justify-center gap-8">
+		<p class="font-bold">dion12.nl</p>
+		<p class="font-bold" id="year">{new Date().getFullYear()}</p>
+	</div>
+</footer>
+<script>
+	(document.getElementById("year") as HTMLElement).innerText = new Date()
+		.getFullYear()
+		.toString();
+</script>

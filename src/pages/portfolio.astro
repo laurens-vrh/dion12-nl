@@ -1,0 +1,41 @@
+---
+import CardList from "../components/CardList.astro";
+// import CardPanel from "../components/ImagePanel.astro";
+import Columns from "../components/Columns.astro";
+import Container from "../components/Container.astro";
+import { cards /* ,panelImages */ } from "../data/cards";
+import Layout from "../layouts/Layout.astro";
+import PageIntro from "../components/PageIntro.astro";
+---
+
+<Layout title="Portfolio | Dion">
+	<PageIntro>
+		<h1 class="text-4xl font-extrabold mb-4">Portfolio</h1>
+		<p class="mb-6 text-lg reveal">
+			hier zie je jmijn prachtige designs wowowieie. wil je kopen contact
+			opnemen hieronder jaja
+		</p>
+		<a
+			class="py-3 px-8 rounded-full text-lg border-2 border-white text-white hover:bg-white hover:text-orange-600 transition-all"
+			href="/contact"
+		>
+			Contact me
+		</a>
+	</PageIntro>
+
+	<section class="px-8 -translate-y-16">
+		<Container>
+			<Columns minWidth="300px">
+				<CardList cards={cards.filter((_, i) => i % 3 === 0)} />
+				<CardList cards={cards.filter((_, i) => i % 3 === 1)} />
+				<CardList cards={cards.filter((_, i) => i % 3 === 2)} />
+			</Columns>
+		</Container>
+	</section>
+
+	<!-- <section class="p-8 hidden">
+		<Container>
+			<CardPanel images={panelImages} />
+		</Container>
+	</section> -->
+</Layout>

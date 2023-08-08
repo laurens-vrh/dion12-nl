@@ -1,0 +1,11 @@
+---
+interface Props {
+	width?: string;
+}
+
+const { width } = Astro.props;
+---
+
+<div class="max-w-screen-lg mx-auto" style={width ? { maxWidth: width } : {}}>
+	<slot />
+</div>

@@ -1,0 +1,25 @@
+---
+import Container from "./Container.astro";
+import NavBar from "./NavBar.astro";
+---
+
+<section class="w-full p-8 bg-image text-white">
+	<NavBar />
+	<Container>
+		<div
+			class="grid place-items-center | lg:gap-8 lg:py-0 lg:grid-cols-2"
+			style="flex-flow: column;"
+		>
+			<div class="order-2 | lg:order-1 h-fit">
+				<slot />
+			</div>
+			<div class="h-full order-1 | lg:order-2">
+				<img
+					class="w-1/4 aspect-[1.25/2] mx-auto object-cover lg:w-2/3"
+					src="/img/dion12_logo.png"
+					alt=""
+				/>
+			</div>
+		</div>
+	</Container>
+</section>

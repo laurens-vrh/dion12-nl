@@ -1,0 +1,25 @@
+---
+type Props = {
+	name: string;
+	color: string;
+};
+
+const { name, color } = Astro.props;
+
+const [r, g, b] =
+	/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
+		.exec(color)
+		?.slice(1)
+		.map((col) => parseInt(col, 16)) ?? [];
+---
+
+<span
+	class="font-sm rounded-full px-2"
+	style={{
+		backgroundColor: `rgba(${r}, ${g}, ${b}, 0.5);`,
+		color: color,
+		border: "1px solid " + color,
+	}}
+>
+	{name}
+</span>

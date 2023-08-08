@@ -1,0 +1,73 @@
+---
+import Container from "../components/Container.astro";
+import PageIntro from "../components/PageIntro.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact | Dion">
+	<PageIntro>
+		<h1 class="text-4xl font-extrabold mb-4">Contact</h1>
+		<p class="mb-6 text-lg reveal">
+			ja contact me nu want jij wilt een supercool en -duur logo kopen toch?
+			jajajaj leuk leuk
+		</p>
+	</PageIntro>
+
+	<section class="p-8 -translate-y-36">
+		<Container>
+			<div class="w-full bg-white rounded-2xl py-16">
+				<Container width="400px">
+					<form class="grid gap-2" id="contact">
+						<input
+							class="p-2 w-full border border-gray-400 rounded-2xl text-lg"
+							type="email"
+							name="email"
+							placeholder="Email"
+						/>
+						<textarea
+							class="p-2 w-full border border-gray-400 rounded-2xl text-lg"
+							name="message"
+							placeholder="Message"
+							form="contact"
+							cols="30"
+							rows="10"></textarea>
+						<button
+							type="submit"
+							class="py-3 px-8 rounded-2xl text-lg border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white transition-all"
+							id="contact-button"
+						>
+							Send
+						</button>
+					</form>
+				</Container>
+			</div>
+		</Container>
+	</section>
+</Layout>
+
+<!-- https://getform.io/f/62cc509e-f921-4c57-855a-3fb1d155436c -->
+<script>
+	const form = document.getElementById("contact") as HTMLFormElement;
+	const button = document.getElementById("contact-button") as HTMLElement;
+
+	form?.addEventListener("submit", async (e) => {
+		e.preventDefault();
+		const formData = new FormData(form);
+		if (!formData.get("email") || !formData.get("message")) return;
+		button?.setAttribute("disabled", "true");
+
+		await fetch("https://getform.io/f/62cc509e-f921-4c57-855a-3fb1d155436c", {
+			method: "POST",
+			body: formData,
+			headers: {
+				Accept: "application/json",
+			},
+		}).catch((error) => {
+			button.setAttribute("disabled", "false");
+			button.innerText = "Error: " + error;
+		});
+
+		form.reset();
+		button.innerText = "Sent!";
+	});
+</script>
